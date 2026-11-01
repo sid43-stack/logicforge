@@ -1,0 +1,34 @@
+{
+  "startedAt": "2026-11-01T13:10:26.825Z",
+  "workflows": [],
+  "sessionTests": [],
+  "pageTests": [
+    {
+      "name": "Dashboard Page",
+      "status": "PASS",
+      "metrics": [
+        "0",
+        "0",
+        "0",
+        "28"
+      ]
+    }
+  ],
+  "errorTests": [],
+  "responsiveTests": [],
+  "screenshots": [
+    {
+      "name": "01_landing_page.png",
+      "label": "Landing Page Hero & Live Health Check",
+      "path": "C:\\Users\\amanj\\Desktop\\NetSage\\docs\\screenshots\\01_landing_page.png"
+    },
+    {
+      "name": "02_dashboard_page.png",
+      "label": "Expert System Dashboard Metrics",
+      "path": "C:\\Users\\amanj\\Desktop\\NetSage\\docs\\screenshots\\02_dashboard_page.png"
+    }
+  ],
+  "bugsFound": [
+    "Waiting for selector `[data-testid=\"answer-yes\"]` failed"
+  ]
+}

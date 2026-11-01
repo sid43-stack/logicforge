@@ -1,0 +1,63 @@
+"""NetSage Pydantic Schemas Index."""
+
+from app.schemas.diagnostic import (
+    HealthResponse,
+    AnswerRequest,
+    DiagnosticAnswerCreate,
+    DiagnosticSessionCreate,
+    WhyExplanationResponse,
+    QuestionWithWhyResponse,
+    DiagnosticStepResponse,
+    DiagnosticResultResponse,
+    StartSessionResponse,
+    AnswerResponse,
+    InferenceTraceStepResponse,
+    InferenceTreeNodeResponse,
+    InferenceTreeEdgeResponse,
+    InferenceTreeGraphResponse,
+    ExplanationResponse,
+    RecommendationResponse,
+    InferenceTraceResponse,
+    DiagnosticSessionResponse,
+)
+from app.schemas.knowledge import (
+    FactResponse,
+    RuleResponse,
+    RuleConditionResponse,
+    KnowledgeStatsResponse,
+)
+from app.schemas.history import (
+    DiagnosticAnswerSummary,
+    SessionSummaryResponse,
+    SessionListResponse,
+    SessionDetailResponse,
+)
+
+__all__ = [
+    "HealthResponse",
+    "AnswerRequest",
+    "DiagnosticAnswerCreate",
+    "DiagnosticSessionCreate",
+    "WhyExplanationResponse",
+    "QuestionWithWhyResponse",
+    "DiagnosticStepResponse",
+    "DiagnosticResultResponse",
+    "StartSessionResponse",
+    "AnswerResponse",
+    "InferenceTraceStepResponse",
+    "InferenceTreeNodeResponse",
+    "InferenceTreeEdgeResponse",
+    "InferenceTreeGraphResponse",
+    "ExplanationResponse",
+    "RecommendationResponse",
+    "InferenceTraceResponse",
+    "DiagnosticSessionResponse",
+    "FactResponse",
+    "RuleResponse",
+    "RuleConditionResponse",
+    "KnowledgeStatsResponse",
+    "DiagnosticAnswerSummary",
+    "SessionSummaryResponse",
+    "SessionListResponse",
+    "SessionDetailResponse",
+]
