@@ -5,10 +5,12 @@ and mounts API routers under /api.
 """
 
 import logging
+from pathlib import Path
 from fastapi import FastAPI, Request, status, HTTPException
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.core.config import settings
 from app.core.exceptions import NetSageException
@@ -104,11 +106,31 @@ async def global_exception_handler(request: Request, exc: Exception):
 # Include API Router
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
+FRONTEND_DIST = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+FRONTEND_INDEX = FRONTEND_DIST / "index.html"
 
 @app.get("/")
 def root():
+    if FRONTEND_INDEX.is_file():
+        return FileResponse(FRONTEND_INDEX)
     return {
         "message": "NetSage Network Troubleshooting Expert System API is running.",
         "docs": f"{settings.API_V1_STR}/docs",
         "health": f"{settings.API_V1_STR}/health",
     }
+
+
+if FRONTEND_INDEX.is_file():
+    assets_dir = FRONTEND_DIST / "assets"
+    if assets_dir.is_dir():
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="frontend-assets")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    def frontend_routes(full_path: str):
+        if full_path == "api" or full_path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="API route not found")
+
+        requested_file = (FRONTEND_DIST / full_path).resolve()
+        if FRONTEND_DIST.resolve() in requested_file.parents and requested_file.is_file():
+            return FileResponse(requested_file)
+        return FileResponse(FRONTEND_INDEX)

@@ -84,3 +84,9 @@ npm run dev
 ```
 Access the application at `http://localhost:5173`.
 
+### Deploy on Render
+
+The repository includes a `render.yaml` Blueprint and a multi-stage `Dockerfile`. In Render, create a new Blueprint from `sid43-stack/logicforge` and apply the `netsage` web service and `netsage-db` PostgreSQL database. The service builds the React frontend and serves it together with the FastAPI API.
+
+The included Blueprint selects free resources for demonstration use. Render's free web service sleeps after 15 minutes without traffic, and its free PostgreSQL database expires after 30 days. Upgrade the database before it expires to keep stored diagnostic history. Local SQLite is intended for development; Render uses the `DATABASE_URL` supplied by its PostgreSQL service.
+

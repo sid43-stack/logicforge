@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: netsage
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: netsage-db
+          property: connectionString
+
+databases:
+  - name: netsage-db
+    databaseName: netsage
+    user: netsage
+    plan: free
+    region: singapore
+    postgresMajorVersion: "16"
